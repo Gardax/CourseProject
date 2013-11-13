@@ -1,0 +1,18 @@
+package com.example.whattowatch;
+
+import java.util.Locale;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+
+public class Main extends Activity{
+	protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.login);
+	}
+	
+	public void onRegister(View v) {
+		setContentView(R.layout.register);
+      }  
+}
