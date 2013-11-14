@@ -14,12 +14,12 @@ public class Main extends Activity{
 	}
 	
 	public void onRegister(View v) {
-		setContentView(R.layout.register);
+		Intent myIntent = new Intent(Main.this, Register.class);
+		Main.this.startActivity(myIntent);
       }  
 	
 	public void Login(View v) {
 		Intent myIntent = new Intent(Main.this, Movies.class);
-		//myIntent.putExtra("key", value); //Optional parameters
 		Main.this.startActivity(myIntent);
       }  
 }
