@@ -23,10 +23,13 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import com.google.gson.Gson;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -49,6 +52,8 @@ public class Register extends Activity{
     public String firstname;
     public String lastname;
     public String authcode;
+    public String sessionKey;
+    LoggedUser user;
     
 	public void Register(View v) {
 		
@@ -82,9 +87,19 @@ public class Register extends Activity{
 
 		    		    result = EntityUtils.toString(response.getEntity());
 		    		    
+		    		    Gson gson=new Gson();
+		    		    user=gson.fromJson(result, LoggedUser.class);
 		    		    
+		    		    sessionKey=user.SessionKey;
 		    		    
+		    		    SharedPreferences settings = getSharedPreferences("SessionKey", 0);
+		    		    SharedPreferences.Editor editor = settings.edit();
+		    		    editor.putString("SessionKey", sessionKey);
+		    		    editor.commit();
 		    		    
+		    		    Intent reg = new Intent(Register.this, Movies.class);
+		    			reg.putExtra("sessionKey", sessionKey);
+		    			Register.this.startActivity(reg);
 		    		}catch (IOException e) {
 		    		post.abort();
 		    		error=e.toString();
@@ -112,11 +127,7 @@ public class Register extends Activity{
 		    }
 		});
 
-		thread.start(); 
-		
-		
-		//Intent myIntent = new Intent(Register.this, Movies.class);
-		//Register.this.startActivity(myIntent);
+		thread.start();
       }  
 	
 }

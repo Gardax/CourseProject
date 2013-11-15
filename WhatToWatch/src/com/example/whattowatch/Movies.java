@@ -4,6 +4,8 @@ import java.util.Locale;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -114,7 +116,12 @@ public class Movies extends FragmentActivity implements ActionBar.TabListener {
             // below) with the page number as its lone argument.
             Fragment fragment = new DummySectionFragment();
             Bundle args = new Bundle();
-            args.putString(DummySectionFragment.ARG_SECTION_NUMBER, "yok");
+            /*Intent reg = getIntent();
+            String sessionKey = reg.getStringExtra("sessionKey");*/
+            
+            SharedPreferences settings = getSharedPreferences("SessionKey", 0);
+            String sessionKey = settings.getString("SessionKey", "none");
+            args.putString(DummySectionFragment.ARG_SECTION_NUMBER, sessionKey);
             fragment.setArguments(args);
             return fragment;
         }
