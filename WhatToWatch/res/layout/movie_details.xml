@@ -70,6 +70,14 @@
         android:layout_below="@+id/textView1" />
 
     <Button
+        android:id="@+id/rateButton"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="93dp"
+        android:layout_height="wrap_content"
+        android:onClick="onRate"
+        android:text="Rate" />
+
+    <Button
         android:id="@+id/watched"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

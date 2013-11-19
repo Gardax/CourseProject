@@ -26,6 +26,7 @@
         <activity android:name="Register"></activity>
         <activity android:name="ListMovies"></activity>
         <activity android:name="MovieDetails"></activity>
+        <activity android:name="WatchedMovies"></activity>
     </application>
 
 </manifest>

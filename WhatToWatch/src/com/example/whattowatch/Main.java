@@ -1,7 +1,11 @@
 package com.example.whattowatch;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
@@ -60,7 +64,7 @@ public class Main extends Activity{
 		EditText swap = (EditText) findViewById(R.id.editText1);
 		Username=swap.getText().toString();
 		swap = (EditText) findViewById(R.id.editText2);
-		Password=swap.getText().toString();
+		Password=encryptPassword(swap.getText().toString());
 		
 		
 		Thread thread = new Thread(new Runnable(){
@@ -133,4 +137,37 @@ public class Main extends Activity{
 
 		thread.start();
       }  
+	
+	private static String encryptPassword(String password)
+	{
+	    String sha1 = "";
+	    try
+	    {
+	        MessageDigest crypt = MessageDigest.getInstance("SHA-1");
+	        crypt.reset();
+	        crypt.update(password.getBytes("UTF-8"));
+	        sha1 = byteToHex(crypt.digest());
+	    }
+	    catch(NoSuchAlgorithmException e)
+	    {
+	        e.printStackTrace();
+	    }
+	    catch(UnsupportedEncodingException e)
+	    {
+	        e.printStackTrace();
+	    }
+	    return sha1;
+	}
+
+	private static String byteToHex(final byte[] hash)
+	{
+	    Formatter formatter = new Formatter();
+	    for (byte b : hash)
+	    {
+	        formatter.format("%02x", b);
+	    }
+	    String result = formatter.toString();
+	    formatter.close();
+	    return result;
+	}
 }

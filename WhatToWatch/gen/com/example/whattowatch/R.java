@@ -24,22 +24,24 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
+        public static final int Logout=0x7f080019;
         public static final int RelativeLayout1=0x7f080003;
-        public static final int action_settings=0x7f080018;
+        public static final int action_settings=0x7f08001a;
         public static final int button1=0x7f080008;
         public static final int cover=0x7f08000d;
         public static final int description=0x7f08000e;
         public static final int editText1=0x7f080005;
         public static final int editText2=0x7f080007;
         public static final int error=0x7f08000a;
-        public static final int firstname=0x7f080014;
-        public static final int lastname=0x7f080016;
-        public static final int lbl_firstname=0x7f080012;
-        public static final int lbl_lastname=0x7f080015;
-        public static final int lbl_username=0x7f080011;
+        public static final int firstname=0x7f080015;
+        public static final int lastname=0x7f080017;
+        public static final int lbl_firstname=0x7f080013;
+        public static final int lbl_lastname=0x7f080016;
+        public static final int lbl_username=0x7f080012;
         public static final int listview=0x7f080002;
         public static final int pager=0x7f080000;
-        public static final int password=0x7f080017;
+        public static final int password=0x7f080018;
+        public static final int rateButton=0x7f080010;
         public static final int rating=0x7f08000f;
         public static final int scrollView1=0x7f08000b;
         public static final int section_label=0x7f080001;
@@ -47,8 +49,8 @@ public final class R {
         public static final int textView2=0x7f080006;
         public static final int textView3=0x7f080009;
         public static final int title=0x7f08000c;
-        public static final int username=0x7f080013;
-        public static final int watched=0x7f080010;
+        public static final int username=0x7f080014;
+        public static final int watched=0x7f080011;
     }
     public static final class layout {
         public static final int activity_movies=0x7f030000;
@@ -59,7 +61,9 @@ public final class R {
         public static final int register=0x7f030005;
     }
     public static final class menu {
-        public static final int movies=0x7f070000;
+        public static final int list_movies_menu=0x7f070000;
+        public static final int movies=0x7f070001;
+        public static final int watched_movies_menu=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
