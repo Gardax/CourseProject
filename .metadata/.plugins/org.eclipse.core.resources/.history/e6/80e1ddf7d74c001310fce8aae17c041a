@@ -1,0 +1,102 @@
+package com.example.whattowatch;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.transform.Source;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.view.View;
+import android.widget.TextView;
+
+public class Register extends Activity{
+	
+	protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.register);
+	}
+	
+	
+	public String URL = "http://whattowatch-1.apphb.com/api/users/register";  
+    public String result = "";  
+    public Context that;
+    public String username;
+    public String firstname;
+    public String lastname;
+    public String authcode;
+    
+	public void Register(View v) {
+		
+		that=this;
+	    
+		Thread thread = new Thread(new Runnable(){
+		    @Override
+		    public void run() {
+		        try {
+		        	HttpPost post = new HttpPost(URL);    
+
+		    		DefaultHttpClient client = new DefaultHttpClient();
+		    		
+		    		
+		    		try {
+		    			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(4);
+			            nameValuePairs.add(new BasicNameValuePair("Username", "stamat"));
+			            nameValuePairs.add(new BasicNameValuePair("FirstName", "Stancho"));
+			            nameValuePairs.add(new BasicNameValuePair("LastName", "Kirkata"));
+			            nameValuePairs.add(new BasicNameValuePair("AuthCode", "123456"));
+			            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		    		    HttpResponse response = client.execute(post);
+
+		    		    String responseBody = EntityUtils.toString(response.getEntity());
+
+		    		    runOnUiThread(new Runnable() {
+	                        @Override
+	                        public void run() {
+	                        	TextView t=new TextView(that); 
+	    		    		    t=(TextView)findViewById(R.id.error); 
+	    		    		    t.setText(responseBody);
+	                        }
+	                    });
+		    		    
+		    		    
+		    		}catch (IOException e) {
+		    		post.abort();
+		    		
+		    		}  
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		           
+		        }
+		    }
+		});
+
+		thread.start(); 
+		
+		
+		//Intent myIntent = new Intent(Register.this, Movies.class);
+		//Register.this.startActivity(myIntent);
+      }  
+	
+}

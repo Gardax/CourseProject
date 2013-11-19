@@ -97,7 +97,7 @@ public class Register extends Activity{
 		    		    editor.putString("SessionKey", sessionKey);
 		    		    editor.commit();
 		    		    
-		    		    Intent reg = new Intent(Register.this, Movies.class);
+		    		    Intent reg = new Intent(Register.this, ListMovies.class);
 		    			reg.putExtra("sessionKey", sessionKey);
 		    			Register.this.startActivity(reg);
 		    		}catch (IOException e) {

@@ -35,11 +35,13 @@ public class Main extends Activity{
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		SharedPreferences settings = getSharedPreferences("SessionKey", 0);
+	    
         String sessionKey = settings.getString("SessionKey", "none");
-        if(sessionKey!="none")
+        if(sessionKey.length()==50)
         {
-        	Intent myIntent = new Intent(Main.this, Movies.class);
+        	Intent myIntent = new Intent(Main.this, ListMovies.class);
     		Main.this.startActivity(myIntent);
         }
         else
@@ -87,7 +89,7 @@ public class Main extends Activity{
 		    		    editor.putString("SessionKey", user.SessionKey);
 		    		    editor.commit();
 		    		    
-		    		    Intent intent = new Intent(Main.this, Movies.class);
+		    		    Intent intent = new Intent(Main.this, ListMovies.class);
 		    			intent.putExtra("sessionKey", user.SessionKey);
 		    			Main.this.startActivity(intent);
 		    		}catch (IOException e) {
@@ -101,7 +103,19 @@ public class Main extends Activity{
     		    		    t.setText(error.toString());
                         }
                     });
-		    		}  
+		    		}
+		    		catch (Exception e) {
+			            e.printStackTrace();
+			            error=e.toString();
+			            runOnUiThread(new Runnable() {
+	                        @Override
+	                        public void run() {
+	                        	TextView t=new TextView(that); 
+	    		    		    t=(TextView)findViewById(R.id.error); 
+	    		    		    t.setText(error.toString());
+	                        }
+	                    });
+			        }
 		        } catch (Exception e) {
 		            e.printStackTrace();
 		            error=e.toString();

@@ -1,0 +1,67 @@
+package com.example.whattowatch;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+
+import javax.xml.transform.Source;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import android.app.Activity;
+import android.app.Application;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+public class Register extends Activity{
+	protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.register);
+	}
+	
+	
+	public String URL = "http://localhost:55670/api/register";  
+    public String result = "";  
+    
+	public void Register(View v) {
+		HttpPost mRequest = new HttpPost(URL);    
+
+		DefaultHttpClient client = new DefaultHttpClient();
+		
+
+		try {
+		    //HttpResponse response = client.execute(mRequest);
+
+		   // InputStream source = response.getEntity().getContent();
+		    //Reader reader = new InputStreamReader(source);
+
+		    //GSON is one of the best alternatives for JSON parsing
+		    /*Gson gson = new Gson();
+
+			User user = gson.fromJson(reader, User.class);*/
+
+		    //At this point you can do whatever you need with your parsed object.
+		    TextView t=new TextView(this); 
+
+		    t=(TextView)findViewById(R.id.error); 
+		    t.setText("done");
+		}/* catch (IOException e) {
+		mRequest.abort();
+		}*/
+	   
+		
+		//Intent myIntent = new Intent(Register.this, Movies.class);
+		//Register.this.startActivity(myIntent);
+      }  
+	
+}

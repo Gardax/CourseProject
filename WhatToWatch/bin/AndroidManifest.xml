@@ -24,6 +24,8 @@
         </activity>
         <activity android:theme="@style/AppBaseTheme" android:name="Movies"></activity>
         <activity android:name="Register"></activity>
+        <activity android:name="ListMovies"></activity>
+        <activity android:name="MovieDetails"></activity>
     </application>
 
 </manifest>
